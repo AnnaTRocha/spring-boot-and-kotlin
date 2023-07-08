@@ -1,5 +1,6 @@
 package br.com.rocha.springbootandkotlin
 
+import br.com.rocha.springbootandkotlin.exceptions.UnsuportedMathOperationException
 import jakarta.websocket.server.PathParam
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,7 +19,8 @@ class MathController {
             ): Double {
         //u can put Double in PathParam, but i put String because
         //im learning validations
-        if(!isNumeric(number1) || !isNumeric(number2)) throw Exception()
+        if(!isNumeric(number1) || !isNumeric(number2))
+                throw UnsuportedMathOperationException("Please set a numeric value!")
         return convertToDouble(number1) + convertToDouble(number2)
     }
 
